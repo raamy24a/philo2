@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 21:26:37 by radib             #+#    #+#             */
-/*   Updated: 2025/10/22 14:44:38 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:51:15 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ int			check_death(int x, t_table *t);
 int			unlocktwo(t_philo *p, int x);
 int			locktwo(t_philo *p, int x);
 long long	time_at_start(void);
+int			verif_argc(t_arg *arg, int argc, char *argv[]);
+int			free_all(int i, t_arg *arg, t_table *t, pthread_t *thread);
 
 #endif

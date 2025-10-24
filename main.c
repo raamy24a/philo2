@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:55:20 by radib             #+#    #+#             */
-/*   Updated: 2025/10/24 15:40:48 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:53:52 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,6 @@ int	assign(t_arg *arg, t_table *t, pthread_t *thread, const char **argv)
 	return (0);
 }
 
-int	free_all(int i, t_arg *arg, t_table *t, pthread_t *thread)
-{
-	(void)i;
-	(void)arg;
-	(void)t;
-	(void)thread;
-	return (1);
-}
-
 int	main(int argc, char const *argv[])
 {
 	int			i;
@@ -98,15 +89,10 @@ int	main(int argc, char const *argv[])
 	t_table		*t;
 	pthread_t	*thread;
 
-	t = malloc (sizeof (t_table));
 	arg = malloc (sizeof (t_arg));
+	verif_argc(arg, argc, (char **)argv);
+	t = malloc (sizeof (t_table));
 	thread = malloc (sizeof(pthread_t) * (ft_atoi(argv[1], 1, 0, 0) + 1));
-	if (argc != 5 && argc != 6)
-		return (printf ("erreur\n"));
-	if (argc == 5)
-		arg->notme = 2147483647;
-	if (argc == 6)
-		arg->notme = ft_atoi(argv[5], 1, 0, 0);
 	if (assign(arg, t, thread, argv) || put_in_struct(-1, arg, t))
 		return (free_mutex_error(0, 0));
 	pthread_mutex_lock(t->startallowed);
