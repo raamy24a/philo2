@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:53:16 by radib             #+#    #+#             */
-/*   Updated: 2025/10/22 15:22:57 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/24 13:53:57 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ int	hardcoded_one(int ttd)
 {
 	printf("0 1 has taken a fork\n");
 	usleep(1000 * ttd);
-	printf("%d 1 has died\n", ttd);
+	printf("%d 1 died\n", ttd);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 14:22:10 by radib             #+#    #+#             */
-/*   Updated: 2025/10/22 16:33:09 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:33:12 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	prnt_s(char *s, unsigned long long time, int philo, t_table *t)
 {
+	pthread_mutex_lock(t->print);
 	if (createandcheck(2, t) == 1)
 	{
-		pthread_mutex_lock(t->print);
 		time = timems(t);
 		printf("%lld %d %s\n", time, philo, s);
-		pthread_mutex_unlock(t->print);
 	}
+	pthread_mutex_unlock(t->print);
 }
 
 int	createandcheck(int x, t_table *t)

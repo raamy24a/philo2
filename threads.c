@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 13:59:01 by radib             #+#    #+#             */
-/*   Updated: 2025/10/22 16:48:43 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/24 14:33:45 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	*philosophers(void *p)
 
 	start = 1;
 	philo = (t_philo *) p;
+	pthread_mutex_lock(philo->table->startallowed);
+	pthread_mutex_unlock(philo->table->startallowed);
 	while (1)
 	{
-		pthread_mutex_lock(philo->table->startallowed);
-		pthread_mutex_unlock(philo->table->startallowed);
 		if (start == 1 && philo->pnbr % 2 == 1)
 		{
 			start = 0;

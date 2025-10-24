@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:55:48 by radib             #+#    #+#             */
-/*   Updated: 2025/10/22 16:28:40 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/24 15:21:27 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	eat(t_philo *p, int x, int timeeating, long long time)
 	while (timeeating < p->tte && createandcheck(2, p->table) == 1)
 	{
 		timeeating = timems(p->table) - time;
-		usleep(1000);
+		usleep(10);
 	}
 	unlocktwo(p, x);
 	return (1);
@@ -44,7 +44,7 @@ int	sleep_philo(t_philo *p)
 	while (timeslept < p->tts)
 	{
 		timeslept = timems(p->table) - time;
-		usleep(1000);
+		usleep(10);
 	}
 	return (1);
 }
@@ -53,14 +53,16 @@ void	think(t_philo *p)
 {
 	int			timethinking;
 	long long	time;
+	int			max_think;
 
+	max_think = p->ttd - (p->tte + p->tts);
 	timethinking = 0;
 	time = timems(p->table);
 	prnt_s("is thinking", time, p->pnbr, p->table);
-	while (timethinking + 5 < (p->ttd - (p->tts + p->tte)) / 2)
+	while (timethinking + 10 < max_think)
 	{
 		timethinking = timems(p->table) - time;
-		usleep(1000);
+		usleep(10);
 	}
 }
 
@@ -88,7 +90,7 @@ int	check_death(int x, t_table *t)
 	pthread_mutex_lock(t->p[x]->check);
 	if (timems(t) - t->p[x]->timelasteaten >= t->p[x]->ttd)
 	{
-		printf("%lld %d died\n", timems(t), t->p[x]->pnbr);
+		prnt_s("died", timems(t), t->p[x]->pnbr, t);
 		pthread_mutex_unlock(t->p[x]->check);
 		return (1);
 	}
