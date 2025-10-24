@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:53:16 by radib             #+#    #+#             */
-/*   Updated: 2025/10/24 13:53:57 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/24 16:30:50 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ int	locktwo(t_philo *p, int x)
 	if (x == 2)
 	{
 		pthread_mutex_lock(p->l_f);
-		prnt_s("has taken a fork", timems(p->table), p->pnbr, p->table);
+		prnt_s("has taken a fork", p->pnbr, p->table);
 		pthread_mutex_lock(p->r_f);
-		prnt_s("has taken a fork", timems(p->table), p->pnbr, p->table);
+		prnt_s("has taken a fork", p->pnbr, p->table);
 		return (x);
 	}
 	if (x == 1)
 	{
 		pthread_mutex_lock(p->r_f);
-		prnt_s("has taken a fork", timems(p->table), p->pnbr, p->table);
+		prnt_s("has taken a fork", p->pnbr, p->table);
 		pthread_mutex_lock(p->l_f);
-		prnt_s("has taken a fork", timems(p->table), p->pnbr, p->table);
+		prnt_s("has taken a fork", p->pnbr, p->table);
 		return (x);
 	}
 	return (x);

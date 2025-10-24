@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:55:20 by radib             #+#    #+#             */
-/*   Updated: 2025/10/24 15:53:52 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/24 16:42:15 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	main(int argc, char const *argv[])
 	i = -1;
 	while (++i < arg->nop && usleep(1000) == 0)
 		pthread_create(&thread[i], NULL, philosophers, t->p[i]);
+	usleep(10000);
 	t->timeatstart = time_at_start();
 	createandcheck(0, t);
 	pthread_mutex_unlock(t->startallowed);

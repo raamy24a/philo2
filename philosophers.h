@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 21:26:37 by radib             #+#    #+#             */
-/*   Updated: 2025/10/24 15:51:15 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/24 16:30:38 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct t
 
 long		ft_atoi(const char *nptr, int sign, int total, int i);
 int			createandcheck(int x, t_table *t);
-void		prnt_s(char *s, unsigned long long time, int philo, t_table *t);
+void		prnt_s(char *s, int philo, t_table *t);
 long long	timems(t_table *t);
 int			hardcoded_one(int ttd);
 void		*philosophers(void *p);

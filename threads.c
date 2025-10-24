@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 13:59:01 by radib             #+#    #+#             */
-/*   Updated: 2025/10/24 14:33:45 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/24 16:47:39 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ void	*philosophers(void *p)
 
 	start = 1;
 	philo = (t_philo *) p;
+	printf("Philo %d created at %lld\n", philo->pnbr, timems(philo->table));
 	pthread_mutex_lock(philo->table->startallowed);
 	pthread_mutex_unlock(philo->table->startallowed);
+	printf("Philo %d passed barrier at %lld\n", philo->pnbr, timems(philo->table));
 	while (1)
 	{
 		if (start == 1 && philo->pnbr % 2 == 1)
