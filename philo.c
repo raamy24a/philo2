@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:55:48 by radib             #+#    #+#             */
-/*   Updated: 2025/10/24 16:31:17 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/27 16:24:21 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,20 @@ int	sleep_philo(t_philo *p)
 	return (1);
 }
 
-void	think(t_philo *p)
+void	think(t_philo *p, int start)
 {
 	int			timethinking;
 	long long	time;
 	int			max_think;
 
-	max_think = p->ttd - (p->tte + p->tts);
+	if (start == 1)
+		max_think = p->tte - 5;
+	if (start == 0)
+		max_think = (p->ttd - (p->tte + p->tts)) / 2;
 	timethinking = 0;
 	time = timems(p->table);
 	prnt_s("is thinking", p->pnbr, p->table);
-	while (timethinking + 10 < max_think)
+	while (timethinking < max_think)
 	{
 		timethinking = timems(p->table) - time;
 		usleep(50);

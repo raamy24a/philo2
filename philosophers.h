@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 21:26:37 by radib             #+#    #+#             */
-/*   Updated: 2025/10/24 16:30:38 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/27 16:07:40 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void		*watchers(void *table);
 long long	timems(t_table *t);
 int			eat(t_philo *p, int x, int timeeating, long long time);
 int			sleep_philo(t_philo *p);
-void		think(t_philo *p);
+void		think(t_philo *p, int start);
 int			everyone_ate_enough(t_table *t);
 int			check_death(int x, t_table *t);
 int			unlocktwo(t_philo *p, int x);
@@ -77,5 +77,9 @@ int			locktwo(t_philo *p, int x);
 long long	time_at_start(void);
 int			verif_argc(t_arg *arg, int argc, char *argv[]);
 int			free_all(int i, t_arg *arg, t_table *t, pthread_t *thread);
+int			put_in_struct(int i, t_arg *arg, t_table *t);
+int			anti_leak(t_arg *arg, t_table *t, pthread_t *th, const char **argv);
+void		give_forks(int i, t_table *t, t_arg *arg);
+int			free_x(int x, t_table *t, int y);
 
 #endif

@@ -1,6 +1,6 @@
 NAME = philo 
 
-SRC_FILES = main.c threads.c philo_helper.c philo.c more_philo.c main_help.c
+SRC_FILES = main.c threads.c philo_helper.c philo.c more_philo.c main_help.c anti_leak.c
 OBJ = $(SRC_FILES:.c=.o)
 
 CC = gcc
