@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:55:48 by radib             #+#    #+#             */
-/*   Updated: 2025/10/27 16:24:21 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/28 14:26:08 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ int	eat(t_philo *p, int x, int timeeating, long long time)
 	pthread_mutex_unlock(p->check);
 	timeeating = 0;
 	prnt_s("is eating", p->pnbr, p->table);
-	while (timeeating < p->tte && createandcheck(2, p->table) == 1)
+	if (check(p->table) == 0)
+		return (1);
+	while (timeeating < p->tte && createandcheck(2, p->table) == 0)
 	{
 		timeeating = timems(p->table) - time;
-		usleep(50);
+		usleep(100);
 	}
 	unlocktwo(p, x);
 	return (1);
@@ -41,10 +43,12 @@ int	sleep_philo(t_philo *p)
 	timeslept = 0;
 	time = timems(p->table);
 	prnt_s("is sleeping", p->pnbr, p->table);
+	if (check(p->table) == 0)
+		return (1);
 	while (timeslept < p->tts)
 	{
 		timeslept = timems(p->table) - time;
-		usleep(50);
+		usleep(100);
 	}
 	return (1);
 }
@@ -62,10 +66,12 @@ void	think(t_philo *p, int start)
 	timethinking = 0;
 	time = timems(p->table);
 	prnt_s("is thinking", p->pnbr, p->table);
+	if (check(p->table) == 0)
+		return ;
 	while (timethinking < max_think)
 	{
 		timethinking = timems(p->table) - time;
-		usleep(50);
+		usleep(100);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:55:20 by radib             #+#    #+#             */
-/*   Updated: 2025/10/27 16:27:22 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/28 14:00:42 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,17 @@ int	free_struct(int i, t_table *t, int y, t_arg *arg)
 		free(t->p[i]->check);
 	if (y >= 1)
 		free(t->p[i]);
-	while (--i >= 0)
+	y = -1;
+	while (++y < i)
 	{
-		pthread_mutex_destroy(t->mutex[i]);
-		pthread_mutex_destroy(t->p[i]->check);
-		free(t->mutex[i]);
-		free(t->p[i]->check);
-		free(t->p[i]);
-		pthread_join(t->thread[i + 1], NULL);
+		pthread_mutex_destroy(t->mutex[y]);
+		pthread_mutex_destroy(t->p[y]->check);
+		free(t->mutex[y]);
+		free(t->p[y]->check);
+		free(t->p[y]);
+		pthread_join(t->thread[y], NULL);
 	}
-	pthread_join(t->thread[i + 1], NULL);
+	pthread_join(t->thread[y], NULL);
 	free_x(5, t, 2);
 	free(arg);
 	free(t->thread);

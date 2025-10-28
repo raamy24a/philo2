@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 21:26:37 by radib             #+#    #+#             */
-/*   Updated: 2025/10/27 16:07:40 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/28 14:06:38 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ int			put_in_struct(int i, t_arg *arg, t_table *t);
 int			anti_leak(t_arg *arg, t_table *t, pthread_t *th, const char **argv);
 void		give_forks(int i, t_table *t, t_arg *arg);
 int			free_x(int x, t_table *t, int y);
+int			check(t_table *t);
 
 #endif

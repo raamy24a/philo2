@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 13:59:01 by radib             #+#    #+#             */
-/*   Updated: 2025/10/27 16:06:58 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/28 13:56:12 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ void	*watchers(void *table)
 		while (x < t->p[0]->nop && alive)
 		{
 			if (check_death(x, t))
-			{
-				alive = 0;
-				createandcheck(1, table);
-			}
+				alive = createandcheck(1, table);
 			x++;
 		}
-		usleep(1000);
+		if (everyone_ate_enough(t) == 1 && alive == 1)
+		{
+			alive = createandcheck(1, table);
+			return (NULL);
+		}
 	}
 	return (NULL);
 }
