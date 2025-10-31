@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:55:20 by radib             #+#    #+#             */
-/*   Updated: 2025/10/28 14:00:42 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/31 16:17:41 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,25 @@ int	put_in_struct(int i, t_arg *arg, t_table *t)
 	return (1);
 }
 
+int	all_stoped(t_table *t)
+{
+	int	i;
+
+	i = 0;
+	while (i < t->p[0]->nop)
+	{
+		pthread_mutex_lock(t->p[i]->check);
+		if (t->p[i]->stop == 0)
+		{
+			pthread_mutex_unlock(t->p[i]->check);
+			return (0);
+		}
+		pthread_mutex_unlock(t->p[i]->check);
+		i++;
+	}
+	return (1);
+}
+
 int	main(int argc, char const *argv[])
 {
 	int			i;
@@ -104,7 +123,7 @@ int	main(int argc, char const *argv[])
 	createandcheck(0, t);
 	pthread_create(&thread[i], NULL, watchers, t);
 	pthread_mutex_unlock(t->startallowed);
-	while (createandcheck(2, t) != -1)
+	while (all_stoped(t) != 1)
 		usleep(1000);
 	return (free_struct(arg->nop, t, 0, arg));
 }

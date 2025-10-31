@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 14:22:10 by radib             #+#    #+#             */
-/*   Updated: 2025/10/28 13:36:28 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/31 16:53:42 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,11 @@ int	createandcheck(int x, t_table *t)
 	}
 	if (x == 3)
 		return (-1);
+	return (0);
+}
+
+int	invalid_input(void)
+{
+	printf("invalid input\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:55:48 by radib             #+#    #+#             */
-/*   Updated: 2025/10/28 14:26:08 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/31 17:13:06 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ int	eat(t_philo *p, int x, int timeeating, long long time)
 	timeeating = 0;
 	prnt_s("is eating", p->pnbr, p->table);
 	if (check(p->table) == 0)
+	{
+		unlocktwo(p, x);
 		return (1);
+	}
 	while (timeeating < p->tte && createandcheck(2, p->table) == 0)
 	{
 		timeeating = timems(p->table) - time;
-		usleep(100);
+		usleep(50);
 	}
 	unlocktwo(p, x);
 	return (1);
@@ -48,7 +51,7 @@ int	sleep_philo(t_philo *p)
 	while (timeslept < p->tts)
 	{
 		timeslept = timems(p->table) - time;
-		usleep(100);
+		usleep(50);
 	}
 	return (1);
 }
@@ -71,7 +74,7 @@ void	think(t_philo *p, int start)
 	while (timethinking < max_think)
 	{
 		timethinking = timems(p->table) - time;
-		usleep(100);
+		usleep(50);
 	}
 }
 
@@ -80,6 +83,8 @@ int	everyone_ate_enough(t_table *t)
 	int	i;
 
 	i = 0;
+	if (t->p[0]->notme == -1)
+		return (0);
 	while (i < t->p[0]->nop)
 	{
 		pthread_mutex_lock(t->p[i]->check);

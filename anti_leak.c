@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 13:27:36 by radib             #+#    #+#             */
-/*   Updated: 2025/10/27 15:47:46 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/31 17:02:53 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	assign(t_arg *arg, t_table *t, pthread_t *thread, const char **argv)
 	arg->ttd = ft_atoi(argv[2], 1, 0, 0);
 	arg->tte = ft_atoi(argv[3], 1, 0, 0);
 	arg->tts = ft_atoi(argv[4], 1, 0, 0);
+	if (arg->nop < 0 || arg->ttd < 0 || arg->tte < 0 || arg->tts < 0)
+		return (invalid_input());
 	if (arg->nop == 1)
 		return (hardcoded_one(arg->ttd));
 	t->p = malloc (sizeof(t_philo *) * arg->nop);
@@ -99,7 +101,10 @@ int	anti_leak(t_arg *arg, t_table *t, pthread_t *th, const char **argv)
 	if (!put_in_struct(-1, arg, t))
 		return (0);
 	while (++i < arg->nop)
+	{
+		t->p[i]->stop = 0;
 		t->p[i]->timelasteaten = 0;
+	}
 	give_forks(-1, t, arg);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 21:26:37 by radib             #+#    #+#             */
-/*   Updated: 2025/10/28 14:06:38 by radib            ###   ########.fr       */
+/*   Updated: 2025/10/31 16:58:56 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,27 @@
 
 typedef struct arg
 {
-	int					nop;
-	int					ttd;
-	int					tte;
-	int					tts;
-	int					notme;
+	long				nop;
+	long				ttd;
+	long				tte;
+	long				tts;
+	long				notme;
 }				t_arg;
 
 typedef struct t	t_table;
 
 typedef struct p
 {
-	int					pnbr;
-	int					nop;
-	int					ttd;
-	int					tte;
-	int					tts;
+	long				pnbr;
+	long				nop;
+	long				ttd;
+	long				tte;
+	long				tts;
 	int					timesincelasteat;
 	int					timelasteaten;
 	int					timeeaten;
 	int					notme;
+	int					stop;
 	pthread_mutex_t		*check;
 	pthread_mutex_t		*l_f;
 	pthread_mutex_t		*r_f;
@@ -82,5 +83,6 @@ int			anti_leak(t_arg *arg, t_table *t, pthread_t *th, const char **argv);
 void		give_forks(int i, t_table *t, t_arg *arg);
 int			free_x(int x, t_table *t, int y);
 int			check(t_table *t);
+int			invalid_input(void);
 
 #endif
