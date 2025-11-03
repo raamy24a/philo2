@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 14:22:10 by radib             #+#    #+#             */
-/*   Updated: 2025/10/31 16:53:42 by radib            ###   ########.fr       */
+/*   Updated: 2025/11/03 13:52:55 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check(t_table *t)
 	return (1);
 }
 
-void	prnt_s(char *s, int philo, t_table *t)
+void	prnt_s(char *s, int philo, t_table *t, int i)
 {
 	unsigned long long	time;
 
@@ -32,7 +32,11 @@ void	prnt_s(char *s, int philo, t_table *t)
 	if (check(t) == 1)
 	{
 		time = timems(t);
-		printf("%lld %d %s\n", time, philo, s);
+		ft_putnbr_fd(time, 1);
+		write (1, " ", 1);
+		ft_putnbr_fd(philo, 1);
+		write (1, " ", 1);
+		write (1, s, i + 1);
 	}
 	pthread_mutex_unlock(t->print);
 }

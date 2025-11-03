@@ -1,10 +1,10 @@
 NAME = philo 
 
-SRC_FILES = main.c threads.c philo_helper.c philo.c more_philo.c main_help.c anti_leak.c
+SRC_FILES = main.c threads.c philo_helper.c philo.c more_philo.c main_help.c anti_leak.c writing.c
 OBJ = $(SRC_FILES:.c=.o)
 
 CC = gcc
-CFLAGS = -g -fsanitize=thread -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 all: $(NAME)
 

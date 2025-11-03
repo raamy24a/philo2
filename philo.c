@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:55:48 by radib             #+#    #+#             */
-/*   Updated: 2025/10/31 17:13:06 by radib            ###   ########.fr       */
+/*   Updated: 2025/11/03 15:15:15 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	eat(t_philo *p, int x, int timeeating, long long time)
 	p->timelasteaten = time;
 	pthread_mutex_unlock(p->check);
 	timeeating = 0;
-	prnt_s("is eating", p->pnbr, p->table);
+	prnt_s("is eating\n", p->pnbr, p->table, 10);
 	if (check(p->table) == 0)
 	{
 		unlocktwo(p, x);
@@ -32,7 +32,7 @@ int	eat(t_philo *p, int x, int timeeating, long long time)
 	while (timeeating < p->tte && createandcheck(2, p->table) == 0)
 	{
 		timeeating = timems(p->table) - time;
-		usleep(50);
+		usleep(100);
 	}
 	unlocktwo(p, x);
 	return (1);
@@ -45,13 +45,13 @@ int	sleep_philo(t_philo *p)
 
 	timeslept = 0;
 	time = timems(p->table);
-	prnt_s("is sleeping", p->pnbr, p->table);
+	prnt_s("is sleeping\n", p->pnbr, p->table, 12);
 	if (check(p->table) == 0)
 		return (1);
 	while (timeslept < p->tts)
 	{
 		timeslept = timems(p->table) - time;
-		usleep(50);
+		usleep(100);
 	}
 	return (1);
 }
@@ -68,13 +68,13 @@ void	think(t_philo *p, int start)
 		max_think = (p->ttd - (p->tte + p->tts)) / 2;
 	timethinking = 0;
 	time = timems(p->table);
-	prnt_s("is thinking", p->pnbr, p->table);
+	prnt_s("is thinking\n", p->pnbr, p->table, 12);
 	if (check(p->table) == 0)
 		return ;
 	while (timethinking < max_think)
 	{
 		timethinking = timems(p->table) - time;
-		usleep(50);
+		usleep(100);
 	}
 }
 
@@ -104,7 +104,7 @@ int	check_death(int x, t_table *t)
 	pthread_mutex_lock(t->p[x]->check);
 	if (timems(t) - t->p[x]->timelasteaten >= t->p[x]->ttd)
 	{
-		prnt_s("died", t->p[x]->pnbr, t);
+		prnt_s("died\n", t->p[x]->pnbr, t, 5);
 		pthread_mutex_unlock(t->p[x]->check);
 		return (1);
 	}
