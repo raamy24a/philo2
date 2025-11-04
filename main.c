@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:55:20 by radib             #+#    #+#             */
-/*   Updated: 2025/10/31 16:17:41 by radib            ###   ########.fr       */
+/*   Updated: 2025/11/04 15:18:39 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,11 @@ int	main(int argc, char const *argv[])
 	arg = malloc (sizeof (t_arg));
 	if (!arg)
 		return (0);
-	verif_argc(arg, argc, (char **)argv);
+	if (!verif_argc(arg, argc, (char **)argv))
+		return (0);
 	t = malloc (sizeof (t_table));
 	thread = malloc (sizeof(pthread_t) * (ft_atoi(argv[1], 1, 0, 0) + 1));
-	if (!anti_leak(arg, t, thread, argv))
+	if (!anti_leak(arg, t, thread))
 		return (0);
 	pthread_mutex_lock(t->startallowed);
 	i = -1;

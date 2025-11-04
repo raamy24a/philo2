@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 13:27:36 by radib             #+#    #+#             */
-/*   Updated: 2025/10/31 17:02:53 by radib            ###   ########.fr       */
+/*   Updated: 2025/11/04 15:17:25 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,8 @@ int	assign_more(t_table *t, pthread_t *thread)
 	return (1);
 }
 
-int	assign(t_arg *arg, t_table *t, pthread_t *thread, const char **argv)
+int	assign(t_arg *arg, t_table *t, pthread_t *thread)
 {
-	arg->nop = ft_atoi(argv[1], 1, 0, 0);
-	arg->ttd = ft_atoi(argv[2], 1, 0, 0);
-	arg->tte = ft_atoi(argv[3], 1, 0, 0);
-	arg->tts = ft_atoi(argv[4], 1, 0, 0);
-	if (arg->nop < 0 || arg->ttd < 0 || arg->tte < 0 || arg->tts < 0)
-		return (invalid_input());
 	if (arg->nop == 1)
 		return (hardcoded_one(arg->ttd));
 	t->p = malloc (sizeof(t_philo *) * arg->nop);
@@ -80,7 +74,7 @@ int	assign(t_arg *arg, t_table *t, pthread_t *thread, const char **argv)
 	return (assign_more(t, thread));
 }
 
-int	anti_leak(t_arg *arg, t_table *t, pthread_t *th, const char **argv)
+int	anti_leak(t_arg *arg, t_table *t, pthread_t *th)
 {
 	int	i;
 
@@ -96,7 +90,7 @@ int	anti_leak(t_arg *arg, t_table *t, pthread_t *th, const char **argv)
 		free(arg);
 		return (0);
 	}
-	if (!assign(arg, t, th, argv))
+	if (!assign(arg, t, th))
 		return (0);
 	if (!put_in_struct(-1, arg, t))
 		return (0);

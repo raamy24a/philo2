@@ -6,7 +6,7 @@
 /*   By: radib <radib@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 12:53:16 by radib             #+#    #+#             */
-/*   Updated: 2025/11/04 13:56:04 by radib            ###   ########.fr       */
+/*   Updated: 2025/11/04 15:10:09 by radib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	locktwo(t_philo *p, int x)
 
 long	ft_atoi(const char *nptr, int sign, int total, int i)
 {
+	if (!nptr)
+		return (-20000000000);
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
@@ -60,6 +62,8 @@ long	ft_atoi(const char *nptr, int sign, int total, int i)
 			sign *= -1;
 		i++;
 	}
+	if (sign == -1)
+		return (-20000000000);
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		total *= 10;

@@ -4,7 +4,7 @@ SRC_FILES = main.c threads.c philo_helper.c philo.c more_philo.c main_help.c ant
 OBJ = $(SRC_FILES:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 all: $(NAME)
 
